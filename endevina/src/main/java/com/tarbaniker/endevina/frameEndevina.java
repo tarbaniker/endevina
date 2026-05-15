@@ -31,9 +31,16 @@ public class frameEndevina extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         animal = new javax.swing.JTextField();
-        ecoAnimal = new javax.swing.JTextField();
+        labelAnimal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Endevina animal");
+        setBackground(new java.awt.Color(51, 153, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(new java.awt.Color(0, 153, 51));
+        setIconImage(getIconImage());
+        setIconImages(getIconImages());
+        setName("pantalla1"); // NOI18N
 
         jLabel1.setLabelFor(animal);
         jLabel1.setText("Quin animal?");
@@ -48,9 +55,6 @@ public class frameEndevina extends javax.swing.JFrame {
         });
         animal.addActionListener(this::animalActionPerformed);
 
-        ecoAnimal.setEditable(false);
-        ecoAnimal.addActionListener(this::ecoAnimalActionPerformed);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,8 +64,8 @@ public class frameEndevina extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ecoAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                    .addComponent(animal))
+                    .addComponent(labelAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(animal, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,9 +75,9 @@ public class frameEndevina extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(animal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(ecoAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(labelAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,19 +87,13 @@ public class frameEndevina extends javax.swing.JFrame {
         // TODO add your handling code here:
         // de moment res
         System.out.println("1) Animal entrat ->"+animal.getText()+"<-");
-        ecoAnimal.setText(animal.getText());
+        labelAnimal.setText(animal.getText());
         System.out.println("1) final");
     }//GEN-LAST:event_animalActionPerformed
-
-    private void ecoAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ecoAnimalActionPerformed
-        // TODO add your handling code here:
-        // de moment res
-    }//GEN-LAST:event_ecoAnimalActionPerformed
 
     private void animalInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_animalInputMethodTextChanged
         // TODO add your handling code here:
         System.out.println("2) Animal entrat ->"+animal.getText()+"<-");
-        ecoAnimal.setText(animal.getText());
         System.out.println("2) Final");
     }//GEN-LAST:event_animalInputMethodTextChanged
 
@@ -126,7 +124,7 @@ public class frameEndevina extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField animal;
-    private javax.swing.JTextField ecoAnimal;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelAnimal;
     // End of variables declaration//GEN-END:variables
 }
