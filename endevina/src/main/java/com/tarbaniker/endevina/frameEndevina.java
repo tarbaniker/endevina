@@ -117,7 +117,7 @@ public class frameEndevina extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        // Només per poder fer commit i push
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new frameEndevina().setVisible(true));
     }
