@@ -4,6 +4,8 @@
  */
 package com.tarbaniker.endevina;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -100,7 +102,7 @@ public class frameEndevina extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])  {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -117,7 +119,21 @@ public class frameEndevina extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        // Només per poder fer commit i push
+
+        /* Creació de la base de dades SQLITE */
+        String url = "jdbc:sqlite:endevina.db";
+
+        
+        try (var conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                var meta = conn.getMetaData();
+                System.out.println("El nom del driver és " + meta.getDriverName());
+                System.out.println("S'ha creat una nova base de dades.");
+                }
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new frameEndevina().setVisible(true));
     }
