@@ -1,0 +1,38 @@
+llegir animal #1
+//Animal llegit//
+si el nom de l'animal llegit és '*'
+    {
+       fer la pregunta llegida
+       si la resposta és Sí, 
+            {
+                llegir animal apuntador Sí
+                anar a //Animal llegit//
+            }
+       si la resposta és No,
+            {
+                llegir animal apuntador No
+                anar a //Animal llegit//
+            }
+    }
+altrament
+    {
+        mostrar nom animal llegit i preguntar si és aquest
+        si la resposta és No,
+            { demanar quin animal ha pensat
+              demanar què ha de preguntar per distingir entre animal pensat i animal mostrat
+              insertar una nova fila a la taula d'animals amb l'animal que ha pensat, i pregunta i apuntadors a nul
+              insertar una nova fila a la taula d'animals amb l'animal mostrat, i pregunta i apuntadors a nul
+              modificar l'animal llegit, posant '*' al nom, posant pregunta que ens han donat per distingir, apuntador del Sí apuntant a la fila de l'animal pensat i apuntador del No a la fila de l'animal mostrat
+              Missatge donant les gràcies
+            }
+        si la resposta és Sí,
+            { Missatge de celebració }
+        preguntar si vol tornar a jugar
+        si la resposta és Sí
+            { llegir animal #1
+              anar a //Animal llegit//
+            }
+        altrament
+            final del programa
+
+             
