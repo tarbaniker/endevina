@@ -120,19 +120,32 @@ public class frameEndevina extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Creació de la base de dades SQLITE */
-        String url = "jdbc:sqlite:endevina.db";
+        /* Obertura/Creació de la base de dades SQLITE */
+        var url = "jdbc:sqlite:endevina.db";
 
-        
         try (var conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 var meta = conn.getMetaData();
                 System.out.println("El nom del driver és " + meta.getDriverName());
-                System.out.println("S'ha creat una nova base de dades.");
-                }
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
+                System.out.println("S'ha obert/creat una nova base de dades.");
+      
+                /* Creació taula animals */
+                var sql = "CREATE TABLE IF NOT EXISTS animals("
+                        + "   id INTEGER PRIMARY KEY,"
+                        + "   nom text NOT NULL,"
+                        + "   pregunta text,"
+                        + "   apuntaId INTEGER"
+                        + ");" ;
+                try ( var stmt = conn.createStatement() ) {
+                      stmt.execute(sql) ;
+                      System.out.println("S'ha creat la taula animals");
+                    } catch (SQLException e) {
+                        System.err.println(e.getMessage());
+                    }
             }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new frameEndevina().setVisible(true));
