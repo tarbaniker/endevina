@@ -4,17 +4,21 @@
  */
 package com.tarbaniker.endevina;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.Connection;
+
+
 
 /**
  *
  * @author enric
  */
-public class frameEndevina extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frameEndevina.class.getName());
 
+
+    
+public class frameEndevina extends javax.swing.JFrame {
+      
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frameEndevina.class.getName());
+    
     /**
      * Creates new form frameEndevina
      */
@@ -90,6 +94,7 @@ public class frameEndevina extends javax.swing.JFrame {
         // de moment res
         System.out.println("1) Animal entrat ->"+animal.getText()+"<-");
         labelAnimal.setText(animal.getText());
+        endevinaAnimal();
         System.out.println("1) final");
     }//GEN-LAST:event_animalActionPerformed
 
@@ -102,7 +107,9 @@ public class frameEndevina extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])  {
+    @SuppressWarnings("static-access")
+    public void main(String args[])  {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -121,34 +128,25 @@ public class frameEndevina extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Obertura/Creació de la base de dades SQLITE */
-        var url = "jdbc:sqlite:endevina.db";
-
-        try (var conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                var meta = conn.getMetaData();
-                System.out.println("El nom del driver és " + meta.getDriverName());
-                System.out.println("S'ha obert/creat una nova base de dades.");
-      
-                /* Creació taula animals */
-                var sql = "CREATE TABLE IF NOT EXISTS animals("
-                        + "   id INTEGER PRIMARY KEY,"
-                        + "   nom text NOT NULL,"
-                        + "   pregunta text,"
-                        + "   apuntaId INTEGER"
-                        + ");" ;
-                try ( var stmt = conn.createStatement() ) {
-                      stmt.execute(sql) ;
-                      System.out.println("S'ha creat la taula animals");
-                    } catch (SQLException e) {
-                        System.err.println(e.getMessage());
-                    }
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-        
+        conn.creaBD();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new frameEndevina().setVisible(true));
+    }
+    
+    private  void endevinaAnimal () {
+        
+        // llegir animal #1
+        conn.llegirBD(1);
+        
+        // inserir una fila
+        conn.insertarBD(90, "gat", "pot amagar les urpes", 91, 92);
+        
+        // actualitzar una fila
+        conn.actualitzarBD(10, "*", 81, 82);
+        
+        // compte quants animals hi ha
+        var quants = conn.quantsAnimals();
+        System.out.printf("Hi ha %d animals", quants);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -156,4 +154,6 @@ public class frameEndevina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelAnimal;
     // End of variables declaration//GEN-END:variables
+
+    private static final connectaBD conn = new connectaBD();
 }
