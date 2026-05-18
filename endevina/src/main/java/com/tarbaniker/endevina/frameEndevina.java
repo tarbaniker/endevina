@@ -36,12 +36,16 @@ public class frameEndevina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        label_pensar = new javax.swing.JLabel();
         animal = new javax.swing.JTextField();
         labelPregunta = new javax.swing.JLabel();
         Buto_pensat = new javax.swing.JButton();
         Buto_SI = new javax.swing.JButton();
         Buto_NO = new javax.swing.JButton();
+        Buto_afegir = new javax.swing.JButton();
+        label_animal = new javax.swing.JLabel();
+        pregunta = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Endevina animal");
@@ -52,8 +56,8 @@ public class frameEndevina extends javax.swing.JFrame {
         setIconImages(getIconImages());
         setName("pantalla1"); // NOI18N
 
-        jLabel1.setLabelFor(animal);
-        jLabel1.setText("Pensa un animal, prem butó");
+        label_pensar.setLabelFor(animal);
+        label_pensar.setText("Pensa un animal, prem butó");
 
         animal.setAction(animal.getAction());
         animal.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -63,7 +67,6 @@ public class frameEndevina extends javax.swing.JFrame {
                 animalInputMethodTextChanged(evt);
             }
         });
-        animal.addActionListener(this::animalActionPerformed);
 
         labelPregunta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
@@ -79,26 +82,53 @@ public class frameEndevina extends javax.swing.JFrame {
         Buto_NO.setText("No");
         Buto_NO.addActionListener(this::Buto_NOActionPerformed);
 
+        Buto_afegir.setAction(Buto_afegir.getAction());
+        Buto_afegir.setText("Afegir animal i pregunta");
+        Buto_afegir.setToolTipText("");
+        Buto_afegir.addActionListener(this::Buto_afegirActionPerformed);
+
+        label_animal.setText("Animal nou");
+        label_animal.setToolTipText("");
+
+        pregunta.setAction(animal.getAction());
+
+        jLabel1.setText("Pregunta per distingir aquest nou animal");
+        jLabel1.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(0, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(animal, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(animal, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(label_pensar, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(Buto_pensat)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(Buto_SI, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Buto_pensat)))
-                        .addGap(18, 18, 18)
-                        .addComponent(Buto_SI, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Buto_NO, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                                .addComponent(Buto_NO, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Buto_afegir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,30 +136,27 @@ public class frameEndevina extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Buto_pensat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(label_pensar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Buto_SI, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(Buto_NO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(animal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(Buto_afegir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void animalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animalActionPerformed
-        // TODO add your handling code here:
-        // de moment res
-        System.out.println("1) Animal entrat ->"+animal.getText()+"<-");
-        labelPregunta.setText(animal.getText());
-
-        endevinaAnimal(0);
-
-        System.out.println("1) final");
-    }//GEN-LAST:event_animalActionPerformed
 
     private void animalInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_animalInputMethodTextChanged
         // TODO add your handling code here:
@@ -160,10 +187,17 @@ public class frameEndevina extends javax.swing.JFrame {
         if (esPregunta) {
             preguntaNO();
         }
-        else {
-            animalNou();
-        }
+        // falta demanar que entrin animal nou i pregunta
     }//GEN-LAST:event_Buto_NOActionPerformed
+
+    private void Buto_afegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buto_afegirActionPerformed
+        // TODO add your handling code here:
+        System.out.println("4) Animal entrat ->"+animal.getText()+"<-");
+        System.out.println("4) Pregunta entrada ->"+pregunta.getText()+"<-");
+        System.out.println("4) Final");
+        preguntaNou = pregunta.getText();
+        animalNou();
+    }//GEN-LAST:event_Buto_afegirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +246,8 @@ public class frameEndevina extends javax.swing.JFrame {
         else {
           labelPregunta.setText("Has pensat '"+resultat.get(0)+"' ?");
           esPregunta = false;
+          animalMostrat = resultat.get(0);
+          idMostrat = id;
         }
     }
     
@@ -247,98 +283,45 @@ public class frameEndevina extends javax.swing.JFrame {
     
     private void animalNou() {
         System.out.printf("%s\n","Animal nou. ");
-    }
-    
-    private  void endevinaAnimal_v0 () throws SQLException {
-         int id;
-        // llegir animal #1
-        // var resultat = conn.llegirAnimal(1);
-        // fem printf per veure que em funciona el SELECT
-        System.out.printf("nom ->%s<-\n",resultat.get(0));
-        System.out.printf("pregunta ->%s<-\n",resultat.get(1));
-        System.out.printf("id SI ->%s<-\n", resultat.get(2));
-        System.out.printf("id NO ->%s<-\n", resultat.get(3));
-        
-        if(resultat.get(0).equals("*"))
-        {
-          //de moment només printf de la pregunta
-          System.out.printf("%s ?", resultat.get(1));
-          //cal demanar resposta (pendent) 
-          //per provar suposarem que responen SI
-          var resposta = "SI";
-          
-          if(resposta.equals("SI"))
-          {
-              //llegir animal apuntador SI
-           try {
-                id = Integer.parseInt(resultat.get(2));
-               }
-                catch (NumberFormatException e) {
-                    id = -1;
-                }
-          }
-          else 
-          {
-              //llegir animal apuntador NO
-           try {
-                id = Integer.parseInt(resultat.get(3));
-               }
-                catch (NumberFormatException e) {
-                    id = -1;
-                }
-          }
-        
-            if(id > 0) {
-                resultat = conn.llegirAnimal(id);
-            }
-          
-        }
-        else
-        {
-            /*
-            mostrar nom animal llegit i preguntar si és aquest
-            si la resposta és No,
-                { demanar quin animal ha pensat
-                  demanar què ha de preguntar per distingir entre animal pensat i animal mostrat
-                  insertar una nova fila a la taula d'animals amb l'animal que ha pensat, i pregunta i apuntadors a nul
-                  insertar una nova fila a la taula d'animals amb l'animal mostrat, i pregunta i apuntadors a nul
-                  modificar l'animal llegit, posant '*' al nom, posant pregunta que ens han donat per distingir, apuntador del Sí apuntant a la fila de l'animal pensat i apuntador del No a la fila de l'animal mostrat
-                  Missatge donant les gràcies
-                }
-            si la resposta és Sí,
-                { Missatge de celebració }
-            preguntar si vol tornar a jugar
-            si la resposta és Sí
-                { llegir animal #1
-                  anar a //Animal llegit//
-                }
-            altrament
-                final del programa            
-            */
-            System.out.printf("És %s ?\n", resultat.get(0));
-        }
+
         // compte quants animals hi ha
         var quants = conn.quantsAnimals();
         System.out.printf("Hi ha %d animals\n", quants);
 
-        // inserir una fila
-        conn.inserirAnimal(quants+1, "gat", "pot amagar les urpes", quants+2, quants+3);
+        // inserir l'animal que ha pensat, i pregunta i apuntadors a nul
+        conn.inserirAnimal(quants+1, animal.getText());
+        System.out.printf("%s\n", "S'ha afegir animal nou");
         
-        // actualitzar una fila
-        conn.actualitzarAnimal(10, "*", 81, 82);
+        // inserir l'animal mostrat, i pregunta i apuntadors a nul
+        conn.inserirAnimal(quants+2, animalMostrat);
+        System.out.printf("%s\n", "S'ha afegir animal anterior");
         
-     }
+        /*
+        modificar l'animal llegit, posant '*' al nom, posant pregunta que ens han donat per distingir, 
+        apuntador del Sí apuntant a la fila de l'animal pensat i apuntador del No a la fila de l'animal mostrat
+        */
+        conn.actualitzarAnimal(idMostrat, preguntaNou, quants+1, quants+2);
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buto_NO;
     private javax.swing.JButton Buto_SI;
+    private javax.swing.JButton Buto_afegir;
     private javax.swing.JButton Buto_pensat;
     private javax.swing.JTextField animal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelPregunta;
+    private javax.swing.JLabel label_animal;
+    private javax.swing.JLabel label_pensar;
+    private javax.swing.JTextField pregunta;
     // End of variables declaration//GEN-END:variables
 
     private static final connectaBD conn = new connectaBD();
     private ArrayList<String> resultat;
     private boolean esPregunta = true;
+    private String animalMostrat = null;
+    private String preguntaNou = null;
+    private int idMostrat = 0;
 }
