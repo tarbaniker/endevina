@@ -46,7 +46,7 @@ public class connectaBD {
         }
     }
     
-    public  void llegirBD(int id) {
+    public  void llegirAnimal(int id) {
         System.out.printf("id rebut %d\n", id);
         var url = URL;
         var sql = "SELECT nom, pregunta, idSI, idNO FROM animals WHERE id = ?";
@@ -68,7 +68,7 @@ public class connectaBD {
         }
     }
     
-    public void insertarBD(int id, String nom, String pregunta, int idSI, int idNO) {
+    public void inserirAnimal(int id, String nom, String pregunta, int idSI, int idNO) {
         System.out.printf("insertarBD. id rebut %d\n", id);
         var url = URL;
         var sql = "INSERT INTO animals(id, nom, pregunta, idSI, idNO) VALUES(?,?,?,?,?)";
@@ -90,7 +90,7 @@ public class connectaBD {
     
     }
     
-    public void actualitzarBD(int id, String nom, int idSI, int idNO) {
+    public void actualitzarAnimal(int id, String nom, int idSI, int idNO) {
         System.out.printf("actualitzarBD. id rebut %d\n", id);
         var url = URL;
         var sql = "UPDATE animals SET nom = ? , "
