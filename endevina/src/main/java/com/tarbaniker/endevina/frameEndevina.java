@@ -4,7 +4,7 @@
  */
 package com.tarbaniker.endevina;
 
-import java.sql.Connection;
+import java.sql.SQLException;
 
 
 
@@ -94,7 +94,11 @@ public class frameEndevina extends javax.swing.JFrame {
         // de moment res
         System.out.println("1) Animal entrat ->"+animal.getText()+"<-");
         labelAnimal.setText(animal.getText());
-        endevinaAnimal();
+        try {
+            endevinaAnimal();
+        } catch (SQLException ex) {
+            System.getLogger(frameEndevina.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
         System.out.println("1) final");
     }//GEN-LAST:event_animalActionPerformed
 
@@ -133,21 +137,27 @@ public class frameEndevina extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new frameEndevina().setVisible(true));
     }
     
-    private  void endevinaAnimal () {
+    private  void endevinaAnimal () throws SQLException {
         
         // llegir animal #1
-        conn.llegirAnimal(1);
-        
+        var resultat =conn.llegirAnimal(1);
+        // de moment només faint printf per veure que em funciona el SELECT
+        System.out.printf("nom ->%s<-\n",resultat.get(0));
+        System.out.printf("pregunta ->%s<-\n",resultat.get(1));
+        System.out.printf("id SI ->%s<-\n", resultat.get(2));
+        System.out.printf("id NO ->%s<-\n", resultat.get(3));
+
+        // compte quants animals hi ha
+        var quants = conn.quantsAnimals();
+        System.out.printf("Hi ha %d animals", quants);
+
         // inserir una fila
-        conn.inserirAnimal(90, "gat", "pot amagar les urpes", 91, 92);
+        conn.inserirAnimal(quants+1, "gat", "pot amagar les urpes", quants+2, quants+3);
         
         // actualitzar una fila
         conn.actualitzarAnimal(10, "*", 81, 82);
         
-        // compte quants animals hi ha
-        var quants = conn.quantsAnimals();
-        System.out.printf("Hi ha %d animals", quants);
-    }
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField animal;

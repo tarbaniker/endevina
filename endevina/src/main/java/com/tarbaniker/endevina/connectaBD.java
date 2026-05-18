@@ -6,7 +6,9 @@ package com.tarbaniker.endevina;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -46,7 +48,7 @@ public class connectaBD {
         }
     }
     
-    public  void llegirAnimal(int id) {
+    public  ArrayList<String> llegirAnimal(int id) {
         System.out.printf("id rebut %d\n", id);
         var url = URL;
         var sql = "SELECT nom, pregunta, idSI, idNO FROM animals WHERE id = ?";
@@ -57,15 +59,24 @@ public class connectaBD {
             stmt.setInt(1, id);
             // Recuperem els resultats; id és PK pertant només un
             var rs = stmt.executeQuery() ;
+            var resultat = new ArrayList<String>();
+            /*
             // de moment només faint printf per veure que em funciona el SELECT
             System.out.printf("nom ->%s<-",rs.getString("nom"));
             System.out.printf("pregunta ->%s<-",rs.getString("pregunta"));
             System.out.printf("id SI %d\n", rs.getInt("idSI"));
             System.out.printf("id NO %d\n", rs.getInt("idNO"));
+            */
+            resultat.add(rs.getString("nom"));
+            resultat.add(rs.getString("pregunta"));
+            resultat.add(Integer.toString(rs.getInt("idSI")));
+            resultat.add(Integer.toString(rs.getInt("idNO")));
+            return resultat;
               
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+        return null;
     }
     
     public void inserirAnimal(int id, String nom, String pregunta, int idSI, int idNO) {
