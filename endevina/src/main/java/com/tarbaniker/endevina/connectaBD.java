@@ -60,13 +60,6 @@ public class connectaBD {
             // Recuperem els resultats; id és PK pertant només un
             var rs = stmt.executeQuery() ;
             var resultat = new ArrayList<String>();
-            /*
-            // de moment només faint printf per veure que em funciona el SELECT
-            System.out.printf("nom ->%s<-",rs.getString("nom"));
-            System.out.printf("pregunta ->%s<-",rs.getString("pregunta"));
-            System.out.printf("id SI %d\n", rs.getInt("idSI"));
-            System.out.printf("id NO %d\n", rs.getInt("idNO"));
-            */
             resultat.add(rs.getString("nom"));
             resultat.add(rs.getString("pregunta"));
             resultat.add(Integer.toString(rs.getInt("idSI")));

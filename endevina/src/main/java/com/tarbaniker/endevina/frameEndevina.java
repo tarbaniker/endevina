@@ -138,18 +138,76 @@ public class frameEndevina extends javax.swing.JFrame {
     }
     
     private  void endevinaAnimal () throws SQLException {
-        
+         int id;
         // llegir animal #1
-        var resultat =conn.llegirAnimal(1);
-        // de moment només faint printf per veure que em funciona el SELECT
+        var resultat = conn.llegirAnimal(1);
+        // fem printf per veure que em funciona el SELECT
         System.out.printf("nom ->%s<-\n",resultat.get(0));
         System.out.printf("pregunta ->%s<-\n",resultat.get(1));
         System.out.printf("id SI ->%s<-\n", resultat.get(2));
         System.out.printf("id NO ->%s<-\n", resultat.get(3));
-
+        
+        if(resultat.get(0).equals("*"))
+        {
+          //de moment només printf de la pregunta
+          System.out.printf("%s ?", resultat.get(1));
+          //cal demanar resposta (pendent) 
+          //per provar suposarem que responen SI
+          var resposta = "SI";
+          
+          if(resposta.equals("SI"))
+          {
+              //llegir animal apuntador SI
+           try {
+                id = Integer.parseInt(resultat.get(2));
+               }
+                catch (NumberFormatException e) {
+                    id = -1;
+                }
+          }
+          else 
+          {
+              //llegir animal apuntador NO
+           try {
+                id = Integer.parseInt(resultat.get(3));
+               }
+                catch (NumberFormatException e) {
+                    id = -1;
+                }
+          }
+        
+            if(id > 0) {
+                resultat = conn.llegirAnimal(id);
+            }
+          
+        }
+        else
+        {
+            /*
+            mostrar nom animal llegit i preguntar si és aquest
+            si la resposta és No,
+                { demanar quin animal ha pensat
+                  demanar què ha de preguntar per distingir entre animal pensat i animal mostrat
+                  insertar una nova fila a la taula d'animals amb l'animal que ha pensat, i pregunta i apuntadors a nul
+                  insertar una nova fila a la taula d'animals amb l'animal mostrat, i pregunta i apuntadors a nul
+                  modificar l'animal llegit, posant '*' al nom, posant pregunta que ens han donat per distingir, apuntador del Sí apuntant a la fila de l'animal pensat i apuntador del No a la fila de l'animal mostrat
+                  Missatge donant les gràcies
+                }
+            si la resposta és Sí,
+                { Missatge de celebració }
+            preguntar si vol tornar a jugar
+            si la resposta és Sí
+                { llegir animal #1
+                  anar a //Animal llegit//
+                }
+            altrament
+                final del programa            
+            */
+            System.out.printf("És %s ?\n", resultat.get(0));
+        }
         // compte quants animals hi ha
         var quants = conn.quantsAnimals();
-        System.out.printf("Hi ha %d animals", quants);
+        System.out.printf("Hi ha %d animals\n", quants);
 
         // inserir una fila
         conn.inserirAnimal(quants+1, "gat", "pot amagar les urpes", quants+2, quants+3);
