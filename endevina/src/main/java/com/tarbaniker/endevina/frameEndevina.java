@@ -136,13 +136,13 @@ public class frameEndevina extends javax.swing.JFrame {
     private  void endevinaAnimal () {
         
         // llegir animal #1
-        conn.llegirBD(1);
+        conn.llegirAnimal(1);
         
         // inserir una fila
-        conn.insertarBD(90, "gat", "pot amagar les urpes", 91, 92);
+        conn.inserirAnimal(90, "gat", "pot amagar les urpes", 91, 92);
         
         // actualitzar una fila
-        conn.actualitzarBD(10, "*", 81, 82);
+        conn.actualitzarAnimal(10, "*", 81, 82);
         
         // compte quants animals hi ha
         var quants = conn.quantsAnimals();
