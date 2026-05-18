@@ -5,6 +5,7 @@
 package com.tarbaniker.endevina;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 
@@ -64,13 +65,19 @@ public class frameEndevina extends javax.swing.JFrame {
         });
         animal.addActionListener(this::animalActionPerformed);
 
+        labelPregunta.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         Buto_pensat.setAction(Buto_pensat.getAction());
         Buto_pensat.setText("Pensat");
         Buto_pensat.addActionListener(this::Buto_pensatActionPerformed);
 
+        Buto_SI.setAction(Buto_SI.getAction());
         Buto_SI.setText("Sí");
+        Buto_SI.addActionListener(this::Buto_SIActionPerformed);
 
+        Buto_NO.setAction(Buto_NO.getAction());
         Buto_NO.setText("No");
+        Buto_NO.addActionListener(this::Buto_NOActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,7 +126,7 @@ public class frameEndevina extends javax.swing.JFrame {
         System.out.println("1) Animal entrat ->"+animal.getText()+"<-");
         labelPregunta.setText(animal.getText());
 
-        endevinaAnimal();
+        endevinaAnimal(0);
 
         System.out.println("1) final");
     }//GEN-LAST:event_animalActionPerformed
@@ -133,9 +140,30 @@ public class frameEndevina extends javax.swing.JFrame {
     private void Buto_pensatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buto_pensatActionPerformed
         // TODO add your handling code here:
         System.out.println("Butó 'Pensat' ");
-        endevinaAnimal();
+        // llegir animal #1 --és l'inicial, per començar a preguntar--
+        endevinaAnimal(1);
         
     }//GEN-LAST:event_Buto_pensatActionPerformed
+
+    private void Buto_SIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buto_SIActionPerformed
+        // TODO add your handling code here:
+        if( esPregunta) {
+            preguntaSI();
+        }
+        else {
+            celebracio();
+        }
+    }//GEN-LAST:event_Buto_SIActionPerformed
+
+    private void Buto_NOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buto_NOActionPerformed
+        // TODO add your handling code here:
+        if (esPregunta) {
+            preguntaNO();
+        }
+        else {
+            animalNou();
+        }
+    }//GEN-LAST:event_Buto_NOActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,10 +194,8 @@ public class frameEndevina extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new frameEndevina().setVisible(true));
     }
     
-    private void endevinaAnimal() {
-        int id;
-        // llegir animal #1 --és l'inicial, per començar a preguntar--
-        var resultat = conn.llegirAnimal(1);
+    private void endevinaAnimal(int id) {
+        resultat = conn.llegirAnimal(id);
         // fem printf per veure que em funciona el SELECT
         System.out.printf("nom ->%s<-\n",resultat.get(0));
         System.out.printf("pregunta ->%s<-\n",resultat.get(1));
@@ -181,13 +207,52 @@ public class frameEndevina extends javax.swing.JFrame {
           //de moment només printf de la pregunta
           System.out.printf("%s ?", resultat.get(1));
           labelPregunta.setText(resultat.get(1)+"?");
+          esPregunta = true;
         }
+        else {
+          labelPregunta.setText("Has pensat '"+resultat.get(0)+"' ?");
+          esPregunta = false;
+        }
+    }
+    
+    private void preguntaSI() {
+        int id;
+        //llegir animal apuntador SI
+        try {
+           id = Integer.parseInt(resultat.get(2));
+          }
+           catch (NumberFormatException e) {
+               id = -1;
+           }
+        endevinaAnimal(id);
+
+    }
+
+    private void preguntaNO() {
+        int id;
+        //llegir animal apuntador NO
+        try {
+           id = Integer.parseInt(resultat.get(3));
+          }
+           catch (NumberFormatException e) {
+               id = -1;
+           }
+        endevinaAnimal(id);
+
+    }
+
+    private void celebracio() {
+        System.out.printf("%s\n", "Celebració!");
+    }
+    
+    private void animalNou() {
+        System.out.printf("%s\n","Animal nou. ");
     }
     
     private  void endevinaAnimal_v0 () throws SQLException {
          int id;
         // llegir animal #1
-        var resultat = conn.llegirAnimal(1);
+        // var resultat = conn.llegirAnimal(1);
         // fem printf per veure que em funciona el SELECT
         System.out.printf("nom ->%s<-\n",resultat.get(0));
         System.out.printf("pregunta ->%s<-\n",resultat.get(1));
@@ -274,4 +339,6 @@ public class frameEndevina extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static final connectaBD conn = new connectaBD();
+    private ArrayList<String> resultat;
+    private boolean esPregunta = true;
 }
