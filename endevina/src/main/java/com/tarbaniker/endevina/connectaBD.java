@@ -73,7 +73,7 @@ public class connectaBD {
     }
     
     public void inserirAnimal(int id, String nom, String pregunta, int idSI, int idNO) {
-        System.out.printf("insertarBD. id rebut %d\n", id);
+        System.out.printf("insereriAnimal. id rebut %d\n", id);
         var url = URL;
         var sql = "INSERT INTO animals(id, nom, pregunta, idSI, idNO) VALUES(?,?,?,?,?)";
         
@@ -94,17 +94,58 @@ public class connectaBD {
     
     }
     
-    public void actualitzarAnimal(int id, String nom, int idSI, int idNO) {
+     public void inserirAnimal(int id, String nom) {
+        System.out.printf("inserirAnimal (parcial). id rebut %d\n", id);
+        var url = URL;
+        var sql = "INSERT INTO animals(id, nom, pregunta, idSI, idNO) VALUES(?,?,null,null,null)";
+        
+        try( var conn = DriverManager.getConnection(url);
+             var stmt = conn.prepareStatement(sql) ) {
+            
+            stmt.setInt(1, id);
+            stmt.setString(2, nom);
+            
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage()); 
+        }
+    
+     }   
+
+     public void inserirAnimal(int id, String nom, String pregunta) {
+        System.out.printf("inserirAnimal (parcial). id rebut %d\n", id);
+        var url = URL;
+        var sql = "INSERT INTO animals(id, nom, pregunta, idSI, idNO) VALUES(?,?,?,null,null)";
+        
+        try( var conn = DriverManager.getConnection(url);
+             var stmt = conn.prepareStatement(sql) ) {
+            
+            stmt.setInt(1, id);
+            stmt.setString(2, nom);
+            stmt.setString(3, pregunta);
+            
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            System.err.println(e.getMessage()); 
+        }
+    
+     }   
+
+     
+    public void actualitzarAnimal(int id, String pregunta, int idSI, int idNO) {
         System.out.printf("actualitzarBD. id rebut %d\n", id);
         var url = URL;
-        var sql = "UPDATE animals SET nom = ? , "
+        var sql = "UPDATE animals SET nom = '*' , "
+                + "pregunta = ? , "
                 + "idSI = ? , idNO = ? "
                 + "WHERE id = ?";
         
         try( var conn = DriverManager.getConnection(url);
              var stmt = conn.prepareStatement(sql) ) {
             
-            stmt.setString(1, nom);
+            stmt.setString(1, pregunta);
             stmt.setInt(2, idSI);
             stmt.setInt(3, idNO);
             stmt.setInt(4, id);
