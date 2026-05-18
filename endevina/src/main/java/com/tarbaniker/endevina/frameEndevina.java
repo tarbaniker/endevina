@@ -37,7 +37,10 @@ public class frameEndevina extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         animal = new javax.swing.JTextField();
-        labelAnimal = new javax.swing.JLabel();
+        labelPregunta = new javax.swing.JLabel();
+        Buto_pensat = new javax.swing.JButton();
+        Buto_SI = new javax.swing.JButton();
+        Buto_NO = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Endevina animal");
@@ -49,7 +52,7 @@ public class frameEndevina extends javax.swing.JFrame {
         setName("pantalla1"); // NOI18N
 
         jLabel1.setLabelFor(animal);
-        jLabel1.setText("Quin animal?");
+        jLabel1.setText("Pensa un animal, prem butó");
 
         animal.setAction(animal.getAction());
         animal.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -61,29 +64,50 @@ public class frameEndevina extends javax.swing.JFrame {
         });
         animal.addActionListener(this::animalActionPerformed);
 
+        Buto_pensat.setAction(Buto_pensat.getAction());
+        Buto_pensat.setText("Pensat");
+        Buto_pensat.addActionListener(this::Buto_pensatActionPerformed);
+
+        Buto_SI.setText("Sí");
+
+        Buto_NO.setText("No");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(animal, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(animal, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Buto_pensat)))
+                        .addGap(18, 18, 18)
+                        .addComponent(Buto_SI, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Buto_NO, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(animal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(labelAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                    .addComponent(Buto_pensat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Buto_SI, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(Buto_NO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(animal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
 
         pack();
@@ -93,12 +117,10 @@ public class frameEndevina extends javax.swing.JFrame {
         // TODO add your handling code here:
         // de moment res
         System.out.println("1) Animal entrat ->"+animal.getText()+"<-");
-        labelAnimal.setText(animal.getText());
-        try {
-            endevinaAnimal();
-        } catch (SQLException ex) {
-            System.getLogger(frameEndevina.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
+        labelPregunta.setText(animal.getText());
+
+        endevinaAnimal();
+
         System.out.println("1) final");
     }//GEN-LAST:event_animalActionPerformed
 
@@ -107,6 +129,13 @@ public class frameEndevina extends javax.swing.JFrame {
         System.out.println("2) Animal entrat ->"+animal.getText()+"<-");
         System.out.println("2) Final");
     }//GEN-LAST:event_animalInputMethodTextChanged
+
+    private void Buto_pensatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buto_pensatActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Butó 'Pensat' ");
+        endevinaAnimal();
+        
+    }//GEN-LAST:event_Buto_pensatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +166,25 @@ public class frameEndevina extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new frameEndevina().setVisible(true));
     }
     
-    private  void endevinaAnimal () throws SQLException {
+    private void endevinaAnimal() {
+        int id;
+        // llegir animal #1 --és l'inicial, per començar a preguntar--
+        var resultat = conn.llegirAnimal(1);
+        // fem printf per veure que em funciona el SELECT
+        System.out.printf("nom ->%s<-\n",resultat.get(0));
+        System.out.printf("pregunta ->%s<-\n",resultat.get(1));
+        System.out.printf("id SI ->%s<-\n", resultat.get(2));
+        System.out.printf("id NO ->%s<-\n", resultat.get(3));
+        
+        if(resultat.get(0).equals("*"))
+        {
+          //de moment només printf de la pregunta
+          System.out.printf("%s ?", resultat.get(1));
+          labelPregunta.setText(resultat.get(1)+"?");
+        }
+    }
+    
+    private  void endevinaAnimal_v0 () throws SQLException {
          int id;
         // llegir animal #1
         var resultat = conn.llegirAnimal(1);
@@ -218,9 +265,12 @@ public class frameEndevina extends javax.swing.JFrame {
      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buto_NO;
+    private javax.swing.JButton Buto_SI;
+    private javax.swing.JButton Buto_pensat;
     private javax.swing.JTextField animal;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel labelAnimal;
+    private javax.swing.JLabel labelPregunta;
     // End of variables declaration//GEN-END:variables
 
     private static final connectaBD conn = new connectaBD();
