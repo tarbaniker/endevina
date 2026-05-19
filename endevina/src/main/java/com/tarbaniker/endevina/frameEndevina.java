@@ -46,6 +46,7 @@ public class frameEndevina extends javax.swing.JFrame {
         label_animal = new javax.swing.JLabel();
         pregunta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        Buto_sortir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Endevina animal");
@@ -95,6 +96,11 @@ public class frameEndevina extends javax.swing.JFrame {
         jLabel1.setText("Pregunta per distingir aquest nou animal");
         jLabel1.setToolTipText("");
 
+        Buto_sortir.setAction(Buto_sortir.getAction());
+        Buto_sortir.setBackground(new java.awt.Color(255, 0, 0));
+        Buto_sortir.setText("Sortir");
+        Buto_sortir.addActionListener(this::Buto_sortirActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,12 +125,11 @@ public class frameEndevina extends javax.swing.JFrame {
                                 .addComponent(Buto_SI, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Buto_NO, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Buto_afegir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Buto_afegir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Buto_sortir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label_animal, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,7 +139,7 @@ public class frameEndevina extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Buto_pensat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_pensar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -152,7 +157,9 @@ public class frameEndevina extends javax.swing.JFrame {
                 .addComponent(pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(Buto_afegir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Buto_sortir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -198,6 +205,11 @@ public class frameEndevina extends javax.swing.JFrame {
         preguntaNou = pregunta.getText();
         animalNou();
     }//GEN-LAST:event_Buto_afegirActionPerformed
+
+    private void Buto_sortirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buto_sortirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_Buto_sortirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,6 +322,7 @@ public class frameEndevina extends javax.swing.JFrame {
     private javax.swing.JButton Buto_SI;
     private javax.swing.JButton Buto_afegir;
     private javax.swing.JButton Buto_pensat;
+    private javax.swing.JButton Buto_sortir;
     private javax.swing.JTextField animal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelPregunta;
