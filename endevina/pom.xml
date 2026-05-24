@@ -79,4 +79,11 @@
             </plugin>
         </plugins>
     </build>
+    <name>Endevina</name>
+    <description>Joc d'endevinar l'animal que has pensat. 
+L'usuari pensa en un animal i el programa intenta endevinar-lo a través d'una sèrie de preguntes. 
+Si no endevina quin animal ha pensat l'usuari, demana quin animal era i quina pregunta ha de fer per distingir-lo dels altres.
+Com més s'hi juga més informació té el programa i més probabilitats d'endevinar l'animal.
+
+</description>
 </project>
