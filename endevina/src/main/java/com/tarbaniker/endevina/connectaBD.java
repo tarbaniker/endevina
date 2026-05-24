@@ -16,9 +16,24 @@ import java.util.ArrayList;
  */
 public class connectaBD {
     
-    private static final String URL = "jdbc:sqlite:endevina.db";
+
+    //private static final String URL = "jdbc:sqlite:endevina.db";
+    private static final String URL = "jdbc:sqlite:"+System.getProperty("user.dir")+"/endevina.db";
+    
     
     public  void creaBD() {
+        
+        System.out.printf("%s\n","URL ->"+URL+"<-");
+
+        // register the driver 
+        String sDriverName = "org.sqlite.JDBC";
+        try {
+            Class.forName(sDriverName);
+        } catch (ClassNotFoundException ex) {
+            System.getLogger(connectaBD.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.exit(3);
+        }
+        
         /* Obertura/Creació de la base de dades SQLITE */
         var url = URL;
 
@@ -45,6 +60,7 @@ public class connectaBD {
              }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+            System.exit(2);
         }
     }
     

@@ -242,7 +242,6 @@ public class frameEndevina extends javax.swing.JFrame {
         System.out.println("4) Final");
         preguntaNou = pregunta.getText();
         animalNou();
-        PanellPrimer.setVisible(false);
     }//GEN-LAST:event_Buto_afegirActionPerformed
 
     private void Buto_sortirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buto_sortirActionPerformed
@@ -254,7 +253,7 @@ public class frameEndevina extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     @SuppressWarnings("static-access")
-    public void main(String args[])  {
+    public static void main(String args[])  {
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
