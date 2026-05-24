@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tarbaniker</groupId>
     <artifactId>endevina</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,6 +45,8 @@
                   </execution>
                 </executions>
                 <configuration>
+                    <finalName>endevina-ad-${project.version}</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
                             <mainClass>com.tarbaniker.endevina.frameEndevina</mainClass>
